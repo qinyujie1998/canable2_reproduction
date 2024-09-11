@@ -70,9 +70,9 @@ void led_blue_blink(uint8_t numblinks)
 	uint8_t i;
 	for(i=0; i<numblinks; i++)
 	{
-		HAL_GPIO_WritePin(LED_BLUE, LED_OFF);
-		HAL_Delay(100);
 		HAL_GPIO_WritePin(LED_BLUE, LED_ON);
+		HAL_Delay(100);
+		HAL_GPIO_WritePin(LED_BLUE, LED_OFF);
 		HAL_Delay(100);
 	}
 }
@@ -98,12 +98,13 @@ void led_process(void)
     // If error occurred in the last 2 seconds, override LEDs with blink sequence
     if(error_last_timestamp() > 0 && (HAL_GetTick() - error_last_timestamp() < 2000))
     {
-    	if(HAL_GetTick() - last_errflash > 150)
+		uint32_t currentTime = HAL_GetTick();
+		uint32_t timeDiff = (currentTime >= last_errflash) ? (currentTime - last_errflash) : (UINT32_MAX - last_errflash + 1 + currentTime);
+    	if(timeDiff > 150)
     	{
     		last_errflash = HAL_GetTick();
-			HAL_GPIO_WritePin(LED_BLUE, error_blink_status);
-			HAL_GPIO_WritePin(LED_GREEN, error_blink_status);
-            error_blink_status = !error_blink_status;
+			HAL_GPIO_TogglePin(LED_BLUE);
+			HAL_GPIO_TogglePin(LED_GREEN);
             error_was_indicating = 1;
     	}
     }

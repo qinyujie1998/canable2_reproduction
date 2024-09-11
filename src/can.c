@@ -141,7 +141,7 @@ void can_disable(void)
 
         bus_state = OFF_BUS;
 
-        led_green_on();
+        HAL_GPIO_WritePin(LED_GREEN, LED_ON);
     }
 }
 
