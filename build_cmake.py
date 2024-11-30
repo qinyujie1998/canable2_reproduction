@@ -14,7 +14,7 @@ def main():
 
     # cmake
     try:
-        command = ['cmake', '-G', 'MinGW Makefiles', '..']
+        command = ['cmake', '-G', 'Unix Makefiles', '..']
         with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True) as process:
             for line in process.stdout:
                 print(line, end='')
