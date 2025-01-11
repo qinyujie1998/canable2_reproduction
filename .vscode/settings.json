@@ -62,10 +62,10 @@
   //       }
   // },
   // "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "cortex-debug.JLinkGDBServerPath": "E:/JLink/JLinkGDBServerCL.exe",
-  "cortex-debug.openocdPath": "C:/Program Files (x86)/xpack-openocd-0.12.0-2/bin/openocd.exe",
+  "cortex-debug.JLinkGDBServerPath": "/usr/bin/JLinkGDBServerCLExe",
+  "cortex-debug.openocdPath": "/usr/bin/openocd",
   "cortex-debug.liveWatchRefreshRate": 300,
-  "cortex-debug.armToolchainPath": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin",
+  "cortex-debug.armToolchainPath": "/usr/local/arm/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/",
   "actionButtons": {
       "reloadButton": "♻️", /* Custom reload button text */
       "defaultColor": "#ff0034", /* Can also use string color names */
@@ -81,10 +81,15 @@
                 "color": "orange",
                 "command": "make clean", /* This is executed in the terminal */
             },
+            // {
+            //     "name": "download jlink",
+            //     "color": "red",
+            //     "command": "make download L=j", /* This is executed in the terminal */
+            // },
             {
-                "name": "download jlink",
-                "color": "red",
-                "command": "make download L=j", /* This is executed in the terminal */
+              "name": "download stlink",
+              "color": "red",
+              "command": "make download L=s", /* This is executed in the terminal */
             },
             {
                 "name": "open elf",
@@ -116,10 +121,15 @@
                 "color": "green",
                 "command": "python build_cmake.py", /* This is executed in the terminal */
             },
+            // {
+            //     "name": "download jlink build_cmake",
+            //     "color": "red",
+            //     "command": "make download_build_cmake L=j", /* This is executed in the terminal */
+            // },
             {
-                "name": "download jlink build_cmake",
-                "color": "red",
-                "command": "make download_build_cmake L=j", /* This is executed in the terminal */
+              "name": "download stlink build_cmake",
+              "color": "red",
+              "command": "make download_build_cmake L=s", /* This is executed in the terminal */
             },
             {
                 "name": "openElf build_cmake",
